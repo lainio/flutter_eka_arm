@@ -8,7 +8,7 @@ import 'package:basic_utils/basic_utils.dart';
 import 'package:cbor/cbor.dart';
 import 'dart:typed_data';
 
-final String curve = 'prime256v1';
+const String curve = 'prime256v1';
 Int64 keyHandleId = Int64(1);
 
 Xorel? seal;
@@ -100,12 +100,12 @@ class Handle {
   List<int> toCbor() {
     final ecPublicKey = publicKey!;
     final cborMap = CborMap({
-      CborSmallInt(kty): CborSmallInt(2),
-      CborSmallInt(alg): CborSmallInt(-7),
-      CborSmallInt(crvCOSE): CborSmallInt(1),
-      CborSmallInt(xCOSE):
+      const CborSmallInt(kty): const CborSmallInt(2),
+      const CborSmallInt(alg): const CborSmallInt(-7),
+      const CborSmallInt(crvCOSE): const CborSmallInt(1),
+      const CborSmallInt(xCOSE):
           CborBytes(CborBigInt(ecPublicKey.Q!.x!.toBigInteger()!).bytes),
-      CborSmallInt(yCOSE):
+      const CborSmallInt(yCOSE):
           CborBytes(CborBigInt(ecPublicKey.Q!.y!.toBigInteger()!).bytes),
     });
     final cborBytes = cbor.encode(cborMap);
@@ -128,7 +128,7 @@ Future<void> exec(String cmd, name, xorKey) async {
     'localhost',
     port: 50053,
     options: ChannelOptions(
-      credentials: ChannelCredentials.insecure(),
+      credentials: const ChannelCredentials.insecure(),
       codecRegistry:
           CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
       //CodecRegistry(codecs: const [GzipCodec()]),
