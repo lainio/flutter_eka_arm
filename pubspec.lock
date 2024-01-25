@@ -246,9 +246,10 @@ packages:
   grpc:
     dependency: "direct main"
     description:
-      path: "/home/parallels/go/src/github.com/grpc/grpc-dart"
-      relative: false
-    source: path
+      name: grpc
+      sha256: e93ee3bce45c134bf44e9728119102358c7cd69de7832d9a874e2e74eb8cab40
+      url: "https://pub.dev"
+    source: hosted
     version: "3.2.4"
   hex:
     dependency: transitive
