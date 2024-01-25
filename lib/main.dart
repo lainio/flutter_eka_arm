@@ -42,8 +42,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  String _accountName = "";
-  String _pinCode = "";
+  String _accountName = "demo_";
+  String _pinCode = "99";
 
   void _incrementCounter() {
     setState(() {
@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'Your account name: ($_pinCode)',
+              'Your account name: ($_accountName, $_pinCode)',
             ),
             TextField(
               obscureText: false,
