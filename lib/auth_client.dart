@@ -141,8 +141,6 @@ Future<void> exec(String cmd, name, xorKey) async {
   seal = Xorel(int.parse(xorKey));
   keyHandleId = keyHandleID;
 
-  print('keyHandleID: $keyHandleID');
-
   var jwt = '';
 
   try {
@@ -155,19 +153,19 @@ Future<void> exec(String cmd, name, xorKey) async {
       ),
       //options: CallOptions(compression: const GzipCodec()), // this works!!
     )) {
-      print('status msg arrives: ${cmdStat.type}');
+      //print('status msg arrives: ${cmdStat.type}');
       switch (cmdStat.type) {
         case CmdStatus_Type.READY_OK:
           jwt = cmdStat.ok.jWT;
           break;
         case CmdStatus_Type.READY_ERR:
           final msg = cmdStat.err;
-          print('cmd status ERR, throwing-> "$msg"');
+          //print('cmd status ERR, throwing-> "$msg"');
           throw 'Exp: error';
         //break;
         case CmdStatus_Type.STATUS:
-          print('==> Has OK: ${cmdStat.type}');
-          print('--> received ${cmdStat.secType}');
+          //print('==> Has OK: ${cmdStat.type}');
+          //print('--> received ${cmdStat.secType}');
 
           switch (cmdStat.secType) {
             case SecretMsg_Type.IS_KEY_HANDLE:
@@ -230,18 +228,18 @@ Future<void> exec(String cmd, name, xorKey) async {
               break;
 
             default:
-              print('ERROR: unknown sec type');
+              //print('ERROR: unknown sec type');
           }
           break;
         default:
-          print('ERR: type');
+          //print('ERR: type');
       }
     }
   } catch (e) {
-    print('Caught error: $e');
+    //print('Caught error: $e');
   }
   await channel.shutdown();
-  print(jwt);
+  //print(jwt);
 }
 
 const int crvCOSE = -1;
