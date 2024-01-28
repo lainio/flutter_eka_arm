@@ -123,7 +123,7 @@ class Handle {
 
 Handle? myHandle;
 
-Future<void> exec(String cmd, name, xorKey) async {
+Future<String> exec(String cmd, name, xorKey) async {
   final channel = ClientChannel(
     'localhost',
     port: 50053,
@@ -159,9 +159,9 @@ Future<void> exec(String cmd, name, xorKey) async {
           jwt = cmdStat.ok.jWT;
           break;
         case CmdStatus_Type.READY_ERR:
-          final msg = cmdStat.err;
+          //final msg = cmdStat.err;
           //print('cmd status ERR, throwing-> "$msg"');
-          throw 'Exp: error';
+          throw 'Exp: error: $cmdStat.err';
         //break;
         case CmdStatus_Type.STATUS:
           //print('==> Has OK: ${cmdStat.type}');
@@ -240,6 +240,7 @@ Future<void> exec(String cmd, name, xorKey) async {
   }
   await channel.shutdown();
   //print(jwt);
+  return jwt;
 }
 
 const int crvCOSE = -1;
