@@ -37,11 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   cryptography: ^2.7.0
 
-  basic_utils: ^5.5.4
-  cbor: ^5.1.2
-  dart_wot: ^0.27.1
-  fixnum: ^1.1.0
-  grpc: ^3.2.4
+  authn:
+    path: ../dart_cli/packages/authn
+
     #  grpc:
     #    path: /home/parallels/go/src/github.com/grpc/grpc-dart
   pointycastle: ^3.7.3

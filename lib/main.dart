@@ -1,5 +1,5 @@
+import 'package:authn/authn.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_eka_arm/auth_client.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 
   // This class is the configuration for the state. It holds the values (in this
   // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
+  // used by the build method of the State. Fields in a Wiget subclass are
   // always marked "final".
 
   final String title;
@@ -52,11 +52,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future register() async {
-    await exec("register", _accountName, _pinCode);
+    final jwt = await authnCmd("register", _accountName, _pinCode);
+    debugPrint('jwt: $jwt');
   }
 
   Future login() async {
-    await exec("login", _accountName, _pinCode);
+    final jwt = await authnCmd("login", _accountName, _pinCode);
+    debugPrint('jwt: $jwt');
   }
 
   void _onSubmittedAccount(String value) {
