@@ -40,10 +40,6 @@ dependencies:
   authn:
     path: ../dart_cli/packages/authn
 
-    #  grpc:
-    #    path: /home/parallels/go/src/github.com/grpc/grpc-dart
-  pointycastle: ^3.7.3
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
