@@ -1,5 +1,6 @@
 import 'package:authn/authn.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_eka_arm/base_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,15 +42,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   String _accountName = "demo_";
   String _pinCode = "99";
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  String _jwt = "";
 
   Future register() async {
     final jwt = await authnCmd("register", _accountName, _pinCode);
@@ -58,7 +53,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future login() async {
     final jwt = await authnCmd("login", _accountName, _pinCode);
-    debugPrint('jwt: $jwt');
+    debugPrint('=== jwt ===');
+    debugPrint(jwt);
+    debugPrint('=== jwt ===');
+    setState(() {
+      _jwt = jwt;
+    });
   }
 
   void _onSubmittedAccount(String value) {
@@ -83,14 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
     // The Flutter framework has been optimized to make rerunning build methods
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
+    return BasePage(
+      child: Center(
         // Center is a layout widget. It takes a single child and positions it
         // in the middle of the parent.
         child: Column(
@@ -157,6 +151,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: login,
                 child: const Text('I already have an account'),
               ),
+            ),
+            const SizedBox(height: 30),
+            Text(
+              'JWT: ($_jwt)',
             ),
           ],
         ),
