@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_eka_arm/base_page.dart';
 
 void main() {
-  //setupAuthnConfigs(); // NOTE: call your implementation of Authn pkg cfg setup
+  setupAuthnConfigs(); // NOTE: call your implementation of Authn pkg cfg setup
   //setupFromYAML('cfg.yaml');
-  setupFromYAML('cfg-op.yaml');
+  //setupFromYAML('cfg-op.yaml');
 
   runApp(const MyApp());
 }
