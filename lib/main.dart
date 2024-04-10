@@ -1,9 +1,27 @@
-import 'package:authn/authn.dart';
+import 'package:authn/authn.dart'; // NOTE: only additional import
 import 'package:flutter/material.dart';
 import 'package:flutter_eka_arm/base_page.dart';
 
 void main() {
+  //setupAuthnConfigs(); // NOTE: call your implementation of Authn pkg cfg setup
+  //setupFromYAML('cfg.yaml');
+  setupFromYAML('cfg-op.yaml');
+
   runApp(const MyApp());
+}
+
+const clientKeyPath = '../../findy-network/cert/client/client.key';
+const clientCertPath = '../../findy-network/cert/client/client.crt';
+
+// NOTE: example how to do it in code with hardcoded values.
+// NOTE: there is yaml cfg files which is the better way
+
+void setupAuthnConfigs() {
+  final cfg = Config(56, clientCertPath, clientKeyPath);
+  final baseCmd = Command('localhost', 50051);
+  final fidoCmd = FidoCommand(
+      'http://localhost:8090', '12c85a48-4baf-47bd-b51f-f192871a1511');
+  setup(cfg, baseCmd, fidoCmd);
 }
 
 class MyApp extends StatelessWidget {
@@ -47,12 +65,15 @@ class _MyHomePageState extends State<MyHomePage> {
   String _jwt = "";
 
   Future register() async {
+    // NOTE: this is a register  call, easy paecy
     final jwt = await authnCmd("register", _accountName, _pinCode);
     debugPrint('jwt: $jwt');
   }
 
   Future login() async {
+    // NOTE: this is a login call, so simple
     final jwt = await authnCmd("login", _accountName, _pinCode);
+
     debugPrint('=== jwt ===');
     debugPrint(jwt);
     debugPrint('=== jwt ===');
