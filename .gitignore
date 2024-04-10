@@ -10,6 +10,8 @@
 .history
 .svn/
 migrate_working_dir/
+cfg.yaml
+cfg-op.yaml
 
 # IntelliJ related
 *.iml
